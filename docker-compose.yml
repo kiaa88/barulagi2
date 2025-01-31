@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+    app:
+        image: php:8.2-fpm
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+        networks:
+            - pos_booth
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./nginx.conf:/nginx/conf.d/default.conf
+            - .:/var/www/html
+        depends_on:
+            - app
+        networks:
+            - pos_booth
+
+    mysql:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: sensus
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: pos
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - pos_booth
+        ports:
+            - "3306:3306"
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: laravel
+            PMA_PASSWORD: pos
+        depends_on:
+            - mysql
+        networks:
+            - pos_booth
+
+networks:
+    pos_booth:
