@@ -67,24 +67,15 @@
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="d-lg-flex justify-content-between">
-                            {{-- <div class="d-lg-flex justify-content-start gap-3">
-                                <select name="jenis Peserta" id="jenis_peserta" class="form-select form-select-sm">
-                                    <option value="" selected>Jenis Peserta</option>
-                                    <option value="peserta">Peserta</option>
-                                    <option value="panitia">Panitia</option>
-                                    <option value="pemateri">Pemateri</option>
-                                    <option value="fasilitator">Fasilitator</option>
-                                    <option value="VIP">VIP</option>
-                                </select>
-                            </div> --}}
                             <div class="mt-lg-0 mt-3">
                                 <button class="btn btn-sm mx-1 btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-plus text-white mb-1 me-2"></i>Tambah Barang
                                 </button>
-                                <a class="btn btn-sm mx-1 btn-danger" href="">
+                                <a class="btn btn-sm mx-1 btn-danger" href="{{ route('dashboard.barang.export') }}">
                                     <i class="fa-solid fa-file-export text-white mb-1 me-2"></i>Export
                                 </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -125,14 +116,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{route('dashboard.barang.insert')}}" id="formreg"
+                        <form method="POST" action="{{route('dashboard.barang.insert')}}" id="formBarang"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <!-- Kode Barang -->
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="kode_barang" name="kode_barang" placeholder="Kode Barang" required value="{{ old('kode_barang') }}">
+                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="kode_barang" 
+                                        name="kode_barang" placeholder="Kode Barang" required value="{{ old('kode_barang') }}">
                                         <label class="label-form" for="kode_barang">Kode Barang *</label>
                                     </div>
                                 </div>
@@ -140,7 +132,8 @@
                                 <!-- Nama Barang -->
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required value="{{ old('nama_barang') }}">
+                                        <input type="text" class="form-control" style="background-color:#fafafa;" 
+                                        id="nama_barang" name="nama_barang" placeholder="Nama Barang" required value="{{ old('nama_barang') }}">
                                         <label class="label-form" for="nama_barang">Nama Barang *</label>
                                     </div>
                                 </div>
@@ -148,7 +141,8 @@
                                 <!-- Stock -->
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" style="background-color:#fafafa;" id="stock" name="stock" placeholder="Stock" required value="{{ old('stock') }}">
+                                        <input type="number" class="form-control" style="background-color:#fafafa;"
+                                         id="stock" name="stock" placeholder="Stock" required value="{{ old('stock') }}">
                                         <label class="label-form" for="stock">Stock *</label>
                                     </div>
                                 </div>
@@ -156,7 +150,8 @@
                                 <!-- Gambar -->
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
-                                        <input type="file" class="form-control" style="background-color:#fafafa;" id="gambar" name="gambar" accept="image/*" required>
+                                        <input type="file" class="form-control" style="background-color:#fafafa;"
+                                         id="gambar" name="gambar" accept="image/*" required>
                                         <label class="label-form" for="gambar">Pilih Gambar *</label>
                                     </div>
                                 </div>
@@ -165,13 +160,13 @@
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
                                         <select class="form-select" style="background-color:#fafafa;"
-                                            id="alamat" name="alamat" required="">
+                                            id="kategori" name="kategori" required="">
                                             <option value="">Tidak ada Kategori yang dipilih</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->nama }}">{{ $category->nama }}</option>
                                             @endforeach
                                         </select>
-                                        <label class="label-form" for="alamat">Kategori *</label>
+                                        <label class="label-form" for="kategori">Kategori *</label>
                                     </div>
                                 </div>
                             </div>
@@ -200,10 +195,16 @@
                             @csrf
                             <div class="row g-3">
                                 <input type="hidden" name="id" id="id_edit" value="{{ old('id', $barang->id ?? '') }}">
-                                
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="name_edit" name="nama_barang" 
+                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="kode_edit" name="kode_barang" 
+                                            placeholder="kode Barang" required="" value="{{ old('kode_barang', $barang->kode_barang ?? '') }}">
+                                        <label class="label-form" for="kode_edit">Kode Barang *</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-1">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="nama_edit" name="nama_barang" 
                                             placeholder="Nama Barang" required="" value="{{ old('nama_barang', $barang->nama_barang ?? '') }}">
                                         <label class="label-form" for="name_edit">Nama Barang *</label>
                                     </div>
@@ -216,14 +217,7 @@
                                         <label class="label-form" for="stock_edit">Stock *</label>
                                     </div>
                                 </div>
-                                
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" style="background-color:#fafafa;" id="phone_edit" name="harga" 
-                                            placeholder="Harga" required="" value="{{ old('harga', $barang->harga ?? '') }}">
-                                        <label class="label-form" for="phone_edit">Harga *</label>
-                                    </div>
-                                </div>
+
                                 
                                 <!-- Gambar -->
                                 <div class="col-lg-12 mb-1">
@@ -238,10 +232,10 @@
                                 <div class="col-lg-12 mb-1">
                                     <div class="form-floating">
                                         <select class="form-select" style="background-color:#fafafa;"
-                                            id="alamat_edit" name="alamat" required="">
+                                            id="kategori_edit" name="kategori" required="">
                                             <option value="">Tidak ada Kategori yang dipilih</option>
                                         </select>
-                                        <label class="label-form" for="alamat_edit">Kategori *</label>
+                                        <label class="label-form" for="kategori_edit">Kategori *</label>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +276,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('assets/js/feather.js') }}"></script>
     <script>
-        $('#formreg').submit(function(e) {
+        $('#formBarang').submit(function(e) {
             e.preventDefault();
             $.blockUI({
                 message: '<div class="spinner-border text-primary" role="status"></div>',
@@ -345,7 +339,7 @@
                 ajax: {
                     url: `{{ url()->current() }}`,
                     data: function(d) {
-                        d.jenis_peserta = $('#jenis_peserta').val();
+                        d.barang = $('#barang').val();
                     }
                 },
                 columns: [{
@@ -355,20 +349,24 @@
                         searchable: false
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'kode_barang',
+                        name: 'kode_barang'
+                    },
+                    {
+                        data: 'nama_barang',
+                        name: 'nama_barang'
                     },
                     {
                         data: 'stock',
                         name: 'stock'
                     },
                     {
-                        data: 'phone',
-                        name: 'phone'
+                        data: 'gambar',
+                        name: 'gambar'
                     },
                     {
-                        data: 'alamat',
-                        name: 'alamat'
+                        data: 'kategori',
+                        name: 'kategori'
                     },
                     {
                         data: 'action'
@@ -423,16 +421,17 @@
                     $('#editModal').modal('show');
 
                     $('#id_edit').val(response.id);
-                    $('#name_edit').val(response.name);
+                    $('#kode_edit').val(response.id);
+                    $('#nama_edit').val(response.name);
                     $('#stock_edit').val(response.stock);
-                    $('#phone_edit').val(response.phone);
+                    $('#gambar_edit').val(response.phone);
 
                     // Clear and populate the categories dropdown
-                    $('#alamat_edit').empty();
-                    $('#alamat_edit').append('<option value="">Tidak ada Kategori yang dipilih</option>');
+                    $('#kategori_edit').empty();
+                    $('#kategori_edit').append('<option value="">Tidak ada Kategori yang dipilih</option>');
                     response.categories.forEach(function(category) {
-                        var selected = (category.nama === response.alamat) ? 'selected' : '';
-                        $('#alamat_edit').append(`<option value="${category.nama}" ${selected}>${category.nama}</option>`);
+                        var selected = (category.nama === response.kategori) ? 'selected' : '';
+                        $('#kategori_edit').append(`<option value="${category.nama}" ${selected}>${category.nama}</option>`);
                     });
                 },
                 error: function(xhr, status, error) {

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KategoriExport;
 
 class KategoriController extends Controller
 {
@@ -84,6 +86,10 @@ class KategoriController extends Controller
         ]);
 
         return response()->json(['status' => 'success', 'message' => 'Data berhasil diupdate.']);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new KategoriExport, 'kategori.xlsx');
     }
 
 }

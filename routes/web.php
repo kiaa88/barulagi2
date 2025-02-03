@@ -51,6 +51,9 @@ route::name('dashboard.')->prefix('dashboard/')
         route::post('kategori/update', [KategoriController::class, 'update'])->name('kategori.update');
         route::delete('kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
 
+        Route::get('barang/export', [BarangController::class, 'export_excel'])->name('barang.export');
+        Route::get('kategori/export', [KategoriController::class, 'export_excel'])->name('kategori.export');
+
         route::post('logout', [LoginController::class, 'logout'])->name('logout');
     });
 

@@ -72,7 +72,7 @@
                                     data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-plus text-white mb-1 me-2"></i>Tambah Kategori
                                 </button>
-                                <a class="btn btn-sm mx-1 btn-danger" href="">
+                                <a class="btn btn-sm mx-1 btn-danger"  href="{{ route('dashboard.kategori.export') }}">
                                     <i class="fa-solid fa-file-export text-white mb-1 me-2"></i>Export
                                 </a>
                             </div>
@@ -275,7 +275,7 @@
                 ajax: {
                     url: `{{ url()->current() }}`,
                     data: function(d) {
-                        d.jenis_peserta = $('#jenis_peserta').val();
+                        d.kategori = $('#kategori').val();
                     }
                 },
                 columns: [{
