@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> SPRUHA - Bootstrap 5 Premium Admin & Dashboard Template </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> @yield('pageTitle', default: 'Dashboard') </title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
     <meta name="Author" content="Spruko Technologies Private Limited">
     <meta name="keywords"
@@ -49,6 +50,8 @@
     <link rel="stylesheet" href="{{ asset('assets/libs/jsvectormap/css/jsvectormap.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/libs/swiper/swiper-bundle.min.css') }}">
+
+    @stack('style')
 
 </head>
 
@@ -623,6 +626,10 @@
     <div id="responsive-overlay"></div>
     <!-- Scroll To Top -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Popper JS -->
     <script src="{{ asset('assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
 
@@ -664,6 +671,8 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    @stack('script')
 
 </body>
 
