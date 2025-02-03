@@ -107,78 +107,73 @@
         </div>
         <!-- End::row-1 -->
 
-        <!-- Modal Tambah Bunga -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="exampleModalLabel1">Tambah Barang</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{route('dashboard.barang.insert')}}" id="formBarang"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row g-3">
-                                <!-- Kode Barang -->
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" style="background-color:#fafafa;" id="kode_barang" 
-                                        name="kode_barang" placeholder="Kode Barang" required value="{{ old('kode_barang') }}">
-                                        <label class="label-form" for="kode_barang">Kode Barang *</label>
-                                    </div>
-                                </div>
-                            
-                                <!-- Nama Barang -->
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" style="background-color:#fafafa;" 
-                                        id="nama_barang" name="nama_barang" placeholder="Nama Barang" required value="{{ old('nama_barang') }}">
-                                        <label class="label-form" for="nama_barang">Nama Barang *</label>
-                                    </div>
-                                </div>
-                            
-                                <!-- Stock -->
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" style="background-color:#fafafa;"
-                                         id="stock" name="stock" placeholder="Stock" required value="{{ old('stock') }}">
-                                        <label class="label-form" for="stock">Stock *</label>
-                                    </div>
-                                </div>
-                            
-                                <!-- Gambar -->
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <input type="file" class="form-control" style="background-color:#fafafa;"
-                                         id="gambar" name="gambar" accept="image/*" required>
-                                        <label class="label-form" for="gambar">Pilih Gambar *</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                                <div class="col-lg-12 mb-1">
-                                    <div class="form-floating">
-                                        <select class="form-select" style="background-color:#fafafa;"
-                                            id="kategori" name="kategori" required="">
-                                            <option value="">Tidak ada Kategori yang dipilih</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->nama }}">{{ $category->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label class="label-form" for="kategori">Kategori *</label>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah</button>
-                    </div>
-                    </form>
-                </div>
+       <!-- Modal Tambah Barang -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel1">Tambah Barang</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form method="POST" action="{{route('dashboard.barang.insert')}}" id="formBarang" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row g-3">
+                        <!-- Kode Barang -->
+                        <div class="col-lg-12 mb-1">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" style="background-color:#fafafa;" id="kode_barang" name="kode_barang" placeholder="Kode Barang" required value="{{ old('kode_barang') }}">
+                                <label class="label-form" for="kode_barang">Kode Barang *</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Nama Barang -->
+                        <div class="col-lg-12 mb-1">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" style="background-color:#fafafa;" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required value="{{ old('nama_barang') }}">
+                                <label class="label-form" for="nama_barang">Nama Barang *</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Stock -->
+                        <div class="col-lg-12 mb-1">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" style="background-color:#fafafa;" id="stock" name="stock" placeholder="Stock" required value="{{ old('stock') }}">
+                                <label class="label-form" for="stock">Stock *</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Gambar -->
+                        <div class="col-lg-12 mb-1">
+                            <div class="form-floating">
+                                <input type="file" class="form-control" style="background-color:#fafafa;" id="gambar" name="gambar" accept="image/*" required>
+                                <label class="label-form" for="gambar">Pilih Gambar *</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Kategori -->
+                        <div class="col-lg-12 mb-1">
+                            <div class="form-floating">
+                                <select class="form-select" style="background-color:#fafafa;" id="kategori" name="kategori" required="">
+                                    <option value="">Tidak ada Kategori yang dipilih</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->nama }}">{{ $category->nama }}</option>
+                                    @endforeach
+                                </select>
+                                <label class="label-form" for="kategori">Kategori *</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </div>
+            </form>
         </div>
+    </div>
+</div>
+
         <!-- End Modal Tambah Peserta -->
 
         <!-- Modal Edit Bunga -->

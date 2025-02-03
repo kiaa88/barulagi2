@@ -74,10 +74,7 @@ class BarangController extends Controller
         // Cek apakah gambar ada dan valid
         if ($request->hasFile('gambar') && $request->file('gambar')->isValid()) {
             $imagePath = $request->file('gambar')->store('uploads', 'public');
-    
-            // Periksa apakah gambar berhasil disimpan
-            dd($imagePath); // Menggunakan dd untuk debugging
-    
+            ($imagePath); 
             BarangModel::create([
                 'kode_barang' => $request->kode_barang,
                 'nama_barang' => $request->nama_barang,
