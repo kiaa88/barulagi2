@@ -209,4 +209,10 @@
         });
     })
 
+    /* basic select2 */
+    $('.js-example-basic-single').select2({
+        placeholder: "Pilih kategori",
+        allowClear: true
+    });
+
 })();

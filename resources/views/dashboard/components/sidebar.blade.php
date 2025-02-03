@@ -32,19 +32,46 @@
                 </svg>
             </div>
             <ul class="main-menu">
-                <!-- Start::slide__category -->
                 <li class="slide__category"><span class="category-name">Dashboard</span></li>
-                <!-- End::slide__category -->
 
-                <!-- Start::slide -->
-                <li class="slide active">
-                    <a href="{{ route('dashboard.home') }}" class="side-menu__item active">
+                <li class="slide {{ request()->routeIs('dashboard.home') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.home') }}" class="side-menu__item {{ request()->routeIs('dashboard.home') ? 'active' : '' }}">
                         <span class="shape1"></span>
                         <span class="shape2"></span>
                         <i class="ti-home side-menu__icon"></i>
                         <span class="side-menu__label">Dashboard</span>
                     </a>
                 </li>
+
+                <li class="slide__category"><span class="category-name">Master Data</span></li>
+
+                <li class="slide {{ request()->routeIs('dashboard.biodata.*') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.biodata.index') }}" class="side-menu__item {{ request()->routeIs('dashboard.biodata.*') ? 'active' : '' }}">
+                        <span class="shape1"></span>
+                        <span class="shape2"></span>
+                        <i class="ti-user side-menu__icon"></i>
+                        <span class="side-menu__label">Biodata</span>
+                    </a>
+                </li>
+
+                <li class="slide {{ request()->routeIs('dashboard.kategori.*') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.kategori.index') }}" class="side-menu__item {{ request()->routeIs('dashboard.kategori.*') ? 'active' : '' }}">
+                        <span class="shape1"></span>
+                        <span class="shape2"></span>
+                        <i class="fa-solid fa-tags side-menu__icon"></i>
+                        <span class="side-menu__label">Kategori</span>
+                    </a>
+                </li>
+
+                <li class="slide {{ request()->routeIs('dashboard.barang.*') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.barang.index') }}" class="side-menu__item {{ request()->routeIs('dashboard.barang.*') ? 'active' : '' }}">
+                        <span class="shape1"></span>
+                        <span class="shape2"></span>
+                        <i class="fa-solid fa-box side-menu__icon"></i>
+                        <span class="side-menu__label">Barang</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- End::nav -->
         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
