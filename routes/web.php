@@ -53,6 +53,7 @@ route::name('dashboard.')->prefix('dashboard/')
 
         Route::get('barang/export', [BarangController::class, 'export_excel'])->name('barang.export');
         Route::get('kategori/export', [KategoriController::class, 'export_excel'])->name('kategori.export');
+        Route::get('biodata/export', [KategoriController::class, 'export_excel'])->name('biodata.export');
 
         route::post('logout', [LoginController::class, 'logout'])->name('logout');
     });

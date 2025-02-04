@@ -82,8 +82,8 @@
                                     data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-plus text-white mb-1 me-2"></i>Tambah Peserta
                                 </button>
-                                <a class="btn btn-sm mx-1 btn-danger" href="">
-                                    <i class="fa-solid fa-file-export text-white mb-1 me-2"></i>Export
+                                <a class="btn btn-sm mx-1 btn-danger" href="{{ route('dashboard.barang.export') }}">
+                                    <i class="fa-solid fa-file-export text-white mb-1 me-2" ></i>Export
                                 </a>
                             </div>
                         </div>

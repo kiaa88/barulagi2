@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BiodataModel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BiodataExport;
 
 class BiodataController extends Controller
 {
@@ -121,6 +123,10 @@ class BiodataController extends Controller
         ]);
 
         return response()->json(['status' => 'success', 'message' => 'Data berhasil diupdate.']);
+    }
+    public function export_excel()
+    {
+        return Excel::download(new BiodataExport, 'barang.xlsx');
     }
 
 }
